@@ -1,0 +1,517 @@
+@import './variables';
+
+@mixin flex($direction){
+    margin: auto;
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    > div{
+        flex: 1;
+    }
+}
+@mixin section{
+    @include flex(row);
+    align-items: flex-start;
+    gap: 2rem;
+    background-color: $default;
+    padding: 8rem 12rem 4rem 12rem;
+
+    div{
+        flex: 1;
+    }
+    @include mobile{
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+    }
+}
+@mixin mobile{
+    @media only screen and (max-width: 800px){
+        @content;
+    }
+}
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    margin: auto;
+    scroll-behavior: smooth;
+    font-family: $default-text;
+    width: 100%;
+    height: 100%;
+    color: $text;
+    background-color: $bgColor;
+    line-height: 1.6;
+    transition: 700ms ease-in;
+    /* overflow-x: hidden; */
+    word-wrap: break-word;
+    text-align: justify;
+    scroll-padding-top: 15vh;
+}
+a{
+    color: $text;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+ul{
+    list-style-type: none;
+}
+div,
+button,
+h1,h2,h3,h4,h5,h6,
+span,p{
+    margin: 0;
+}
+h1{
+    color: $primary;
+    text-transform: uppercase;
+    font-size: 6rem;
+    font-family: $heading-text;
+    text-shadow: 1px 1px 0px $default;
+    letter-spacing: 8px;
+}
+h2{
+    font-family: $heading-text;
+    font-size: 2rem;
+    text-transform: uppercase;
+    @include mobile{
+        font-size: 1.6rem;
+    }
+}
+h3{
+    font-family: $secondary-text;
+    font-size: 1.2rem;
+}
+h4{
+    font-size: 1.4rem;
+}
+p{
+    font-size: 1.2rem;
+    font-family: $default-text;
+}
+img{
+    max-width: 100%;
+    margin: auto;
+    object-fit: cover;
+    display: block;
+}
+input, 
+select,  
+textarea{
+    font-family: $secondary-text;
+    padding: 0.8rem 3rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: $primary;
+    color: $default;
+    text-transform: uppercase;
+    resize: none;
+}
+button{
+    width: max-content;
+    margin: 1rem auto;
+    font-family: $secondary-text;
+    font-size: 1rem;
+    background-color: $primary;
+    color: $default;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    text-transform: uppercase;
+    @include mobile{
+        padding: 0.8rem;
+    }
+
+    &:hover{
+        background-color: #788fdb;
+        box-shadow: -5px 5px $text;
+        transition: 700ms ease-in-out;
+        place-items: center;
+    }
+}
+.center{
+    margin: auto;
+    text-align: center;
+}
+#fixedButton  img{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    margin: 1rem;
+    border: none;
+    z-index: 999;
+}
+
+// Style content start
+marquee{
+    background-color: $default;
+    margin: 0;
+    padding: 0;
+}
+nav{
+    width: 100%;
+    background-color: $bgColor;
+    font-family: $secondary-text;
+    position: sticky;
+    top: 0;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 1.5rem;
+    box-shadow: 1px 1px;
+    z-index: 1;
+    #toggler{
+        text-align: right;
+        z-index: 9;
+    }
+    #hamburger{
+        display: none;
+        @include mobile{
+            display: block;
+        }
+    }
+    
+    &.active{
+        background-color: $default;
+    }
+    :nth-child(3){
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+    img{
+        width: 35px;
+        height: 35px;
+        @include mobile{
+            display: none;
+        }
+    }
+    > #site-title{
+        margin-right: auto;
+        align-self: center;
+        @include mobile{
+            display: block;
+            font-size: 1rem;
+        }
+    }
+    ul{
+        @include flex(row);
+            @include mobile{
+                display: none;
+            }
+    }
+
+    li{
+        text-transform: uppercase;
+        font-size: 1.1rem;
+    }
+    
+}
+
+#mNav{
+    width: 80%;
+    display: block;
+    inset: 0 0 0 20%;
+    position: fixed;
+    background-color: $bgColor;
+    backdrop-filter: blur(1rem);
+    color: $dark !important;
+    padding: 1rem;
+    z-index: 1;
+    // transition-property: all; 
+    // transition-duration: 0.3s;
+    // transition-timing-function: ease-in;
+    // transition-delay: 0s;
+
+    #closeNav{
+        color: red;
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 0;
+    }
+
+    img{
+        width: 40px;
+        height: 40px;
+    }
+    > div{
+        @include flex(row);
+        
+        justify-content: space-between;
+    }
+    i{
+        
+        font-size: 2rem;
+    }
+    li{
+        font-size: 1rem;
+        padding: 1.5rem 0;
+        
+        border-bottom: 1px solid $dark;
+    }
+    a{
+        
+        color: $dark;
+    }
+    p{
+        
+        margin-top: 5rem;
+    }
+}
+
+header{
+    margin: auto;
+    width: 85%;
+    height: 95vh !important;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+
+    @include mobile{
+        @include flex(column-reverse);
+        width: 95%;
+
+        
+    }
+    
+    .hero--img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    img{
+        width: 100%;
+    }
+
+    h2{
+        font-family: $heading-text;
+        font-size: 2.5rem;
+        @include mobile{
+            text-align: left;
+            font-size: 1.6rem;
+        }
+    }
+    p{
+        font-size: 1.5rem;
+        @include mobile{
+            font-size: 1.1rem;
+        }
+    }
+    h3{
+        animation-name: tagline;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 3000ms;
+        font-size: 2rem;
+        @include mobile{
+            font-size: 1rem;
+        }
+    }
+
+    
+}
+
+.section-light{
+    @include section;
+    div{
+        width: 85%;
+    }
+}
+#section{    
+    width: 100%;
+    @include flex(row);
+    justify-content: space-between;
+    padding: 4rem;
+    text-align: center;
+    @include mobile{
+        flex-direction: column;
+        padding: 4rem;
+    }
+    div{
+        width: 85%;
+    }
+}
+.got-question{
+    height: 100%;
+    background-image:url('./question.png');
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position-x: left;
+    background-position-y: center;
+    padding: 2rem;
+    @include flex(row-reverse);
+    justify-content: flex-start;
+    text-align: center;
+
+    div{
+        width: 85%;
+    }
+
+    @include mobile{
+        background-size: 100%;
+        background-position: center;
+    }
+}
+#services{
+    margin: auto;
+    padding: 5rem 12rem 10rem 12rem;
+    text-align: center;
+    @include mobile{
+        padding: 5rem 2rem;
+    }
+}
+.card-container{
+    @include flex(row);
+    flex-wrap: wrap;
+
+    div{
+        flex: 1;
+    }
+
+    @include mobile{
+        flex-direction: column;
+    }
+}
+.card{
+    @include flex(column);
+    height: 450px;
+    transition: 1000ms all;
+    padding: 1.5rem 3rem;
+    background-color: $default;
+    position: relative;
+
+    img{
+        width: 50%;
+    }
+
+
+    > div{
+        flex: 1;
+    }
+    &:hover{
+        transform: scale(1.01);
+        box-shadow: -5px 5px $text;
+    }
+}
+// CONTACT component styling
+#contactContainer{
+    margin-block: 2rem;
+    h2{
+        text-align: center;
+    }
+}
+#contact{
+    margin: auto;
+    width: 85%;
+    @include mobile{
+        width: 90%;
+        padding: 0;
+
+    }
+    
+    .tally--form{
+        min-width: 100%;
+
+    }
+
+    .contact--div{
+        border: solid $bgColor;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-inline: 2rem;
+
+        @include mobile{
+            margin-inline: 0;
+            grid-template-columns: 1fr;
+        }
+
+        img{
+            width: 150px !important;
+        }
+
+        form{
+            @include flex(column);
+            gap: 1.5rem;
+            // border: solid $grey;
+            padding: 1rem;
+
+            >*{
+                width: 100%;
+            }
+            
+        }
+
+    }
+    .g--map{
+        margin: auto;
+        text-align: center;
+        width: 80%;
+        height: 350px;
+    }
+}
+
+footer{
+    @include flex(row);
+    flex-wrap: wrap;
+    margin: 2rem auto 10rem auto;
+    // padding-inline: 2rem;
+    width: 70%;
+    align-items: flex-start;
+
+    > div{
+        flex: 1;
+    }
+
+    h4{
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+    p{
+        font-size: 1rem;
+    }
+
+    @include mobile{
+        flex-direction: column;
+    }
+}
+.endNote{
+    @include flex(row);
+    text-align: justify;
+    justify-content: space-around;
+    width: 70%;
+
+    p{
+        font-size: 1rem;
+        text-align: center;
+    }
+    @include mobile{
+        flex-direction: column-reverse;
+        gap: 0;
+        padding: 1rem;
+    }
+}
+.endNote-icons{
+    font-size: 0.8rem;
+    color: $primary;
+    letter-spacing: 2rem;
+
+    &:hover{
+        color: $dark;
+    }
+}
